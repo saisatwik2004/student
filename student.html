@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Calculator</title>
+    <style>
+        body {
+            background-image: url("https://static.vecteezy.com/system/resources/thumbnails/006/262/235/small/night-sky-with-stars-sparkling-on-black-background-free-photo.jpg");
+            color: white; /* Set default text color to white */
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+        }
+        table, th, td {
+            border: 1px solid white;
+            text-align: center;
+        }
+        form {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h3 style="text-align: center; font-size: 30px;">Calculate Your Grade Here</h3>
+    <form>
+        <label>Subject1 </label>
+        <input type="number" placeholder="Enter Marks" id="n1" min="0" max="100"><br><br>
+        <label>Subject2 </label>
+        <input type="number" placeholder="Enter Marks" id="n2" min="0" max="100"><br><br>
+        <label>Subject3 </label>
+        <input type="number" placeholder="Enter Marks" id="n3" min="0" max="100"><br><br>
+        <label>Subject4 </label>
+        <input type="number" placeholder="Enter Marks" id="n4" min="0" max="100"><br><br>
+        <label>Subject5 </label>
+        <input type="number" placeholder="Enter Marks" id="n5" min="0" max="100"><br><br>
+        
+        <button type="button" onclick="calculatePercentage()">Show Result</button>
+    </form>
+
+    <div id="result" align="center"></div>
+
+    <table>
+        <caption>Grade Table</caption>
+        <tr>
+            <th>Marks</th>
+            <th>Grade</th>
+        </tr>
+        <tr>
+            <td>100</td>
+            <td>Distinction</td>
+        </tr>
+        <tr>
+            <td>95-100</td>
+            <td>A+</td>
+        </tr>
+        <tr>
+            <td>90-95</td>
+            <td>A</td>
+        </tr>
+        <tr>
+            <td>85-90</td>
+            <td>B+</td>
+        </tr>
+        <tr>
+            <td>80-85</td>
+            <td>B</td>
+        </tr>
+        <tr>
+            <td>70-80</td>
+            <td>C</td>
+        </tr>
+        <tr>
+            <td>60-70</td>
+            <td>D</td>
+        </tr>
+        <tr>
+            <td>50-60</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>&lt;50</td>
+            <td>Fail</td>
+        </tr>
+    </table>
+
+    <script>
+        function calculatePercentage() {
+            // Get input values
+            let n1 = parseFloat(document.getElementById('n1').value);
+            let n2 = parseFloat(document.getElementById('n2').value);
+            let n3 = parseFloat(document.getElementById('n3').value);
+            let n4 = parseFloat(document.getElementById('n4').value);
+            let n5 = parseFloat(document.getElementById('n5').value);
+
+            // Validate inputs (optional step)
+            if (isNaN(n1) || isNaN(n2) || isNaN(n3) || isNaN(n4) || isNaN(n5)) {
+                alert('Please enter valid numeric values for all subjects.');
+                return;
+            }
+
+            // Calculate total marks and percentage
+            let totalMarks = n1 + n2 + n3 + n4 + n5;
+            let percentage = (totalMarks / 5).toFixed(2); // Calculate percentage with 2 decimal places
+
+            // Determine grade based on percentage
+            let grade;
+            if (percentage >= 95) {
+                grade = 'A+';
+            } else if (percentage >= 90) {
+                grade = 'A';
+            } else if (percentage >= 85) {
+                grade = 'B+';
+            } else if (percentage >= 80) {
+                grade = 'B';
+            } else if (percentage >= 70) {
+                grade = 'C';
+            } else if (percentage >= 60) {
+                grade = 'D';
+            } else if (percentage >= 50) {
+                grade = 'E';
+            } else {
+                grade = 'Fail';
+            }
+
+            // Display results
+            let resultElement = document.getElementById('result');
+            resultElement.innerHTML = `<h3>Result</h3>`;
+            resultElement.innerHTML += `<p>Total Marks: ${totalMarks}</p>`;
+            resultElement.innerHTML += `<p>Percentage: ${percentage}%</p>`;
+            resultElement.innerHTML += `<p>Grade: ${grade}</p>`;
+        }
+    </script>
+</body>
+</html>
